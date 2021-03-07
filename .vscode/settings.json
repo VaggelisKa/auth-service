@@ -3,5 +3,6 @@
     "currentuser",
     "signin",
     "signup"
-  ]
+  ],
+  "editor.fontLigatures": true
 }
