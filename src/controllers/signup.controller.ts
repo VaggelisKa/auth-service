@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
+import jwt from 'jsonwebtoken';
 
 import { User } from '../models/user';
 import { RequestValidationError } from '../errors/request-validation-error';
@@ -21,6 +22,17 @@ const signupController = async (req: Request, res: Response, next: NextFunction)
   
     const user = User.build({email, password});
     await user.save();
+
+    // Generate jwt
+    const userJwt = jwt.sign({
+      id: user.id,
+      email: user.email
+    }, 'random secret key');
+
+    // Store jwt on session object
+    req.session = {
+      jwt: userJwt
+    };
   
     res.status(201).send(user);
   } catch (error) {
