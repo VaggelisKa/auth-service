@@ -27,7 +27,7 @@ const signupController = async (req: Request, res: Response, next: NextFunction)
     const userJwt = jwt.sign({
       id: user.id,
       email: user.email
-    }, 'random secret key');
+    }, process.env.JWT_KEY!);
 
     // Store jwt on session object
     req.session = {
