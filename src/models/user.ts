@@ -1,6 +1,11 @@
 import { Document, Model, Schema, model } from 'mongoose';
 import Password from '../utils/password';
 
+export interface UserToReturn {
+  id: string;
+  email: string
+}
+
 interface UserAttributes {
   email: string;
   password: string;
