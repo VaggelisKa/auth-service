@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import { UserToReturn } from '../models/user';
 
-const generateTokenAndSendCookie = (user: UserToReturn, req: Request) => {
+const generateTokenAndSendCookie = (user: UserToReturn, req: Request): void => {
       // Generate jwt
       const userJwt = jwt.sign({
         id: user.id,
